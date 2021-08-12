@@ -9,11 +9,23 @@
 import UIKit
 class CountryPickerContainerView: UIView {
     var presenter: CountryPickerPresenterProtocol
+    lazy var tableView: UITableView = {
+        let tableView = UITableView()
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.separatorStyle = .none
+        tableView.showsVerticalScrollIndicator = false
+        tableView.allowsSelection = true
+        tableView.backgroundColor = .clear
+        tableView.register(CountryCell.self, forCellReuseIdentifier: NSStringFromClass(CountryCell.self))
+        tableView.dataSource = self
+        tableView.delegate = self
+        return tableView
+    }()
 
     init(presenter: CountryPickerPresenterProtocol) {
         self.presenter = presenter
         super.init(frame: .zero)
-        self.backgroundColor = .white
+        self.backgroundColor = ColorTypes.background.value
         self.layoutUserInterFace()
     }
 
@@ -24,7 +36,19 @@ class CountryPickerContainerView: UIView {
 
     private func layoutUserInterFace() {
         self.addSubViews()
+        self.setupTableViewConstraints()
     }
 
-    private func addSubViews() {}
+    private func addSubViews() {
+        self.addSubview(self.tableView)
+    }
+
+    private func setupTableViewConstraints() {
+        NSLayoutConstraint.activate([
+            self.tableView.topAnchor.constraint(equalTo: self.topAnchor),
+            self.tableView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            self.tableView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            self.tableView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
+        ])
+    }
 }

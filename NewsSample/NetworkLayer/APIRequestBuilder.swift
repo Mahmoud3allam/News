@@ -21,7 +21,7 @@ protocol APIRequestBuilder {
 
 extension APIRequestBuilder {
     var baseUrl: String {
-        ""
+        NetworkConstant.baseUrl.rawValue
     }
 
     var headers: [String: String]? {

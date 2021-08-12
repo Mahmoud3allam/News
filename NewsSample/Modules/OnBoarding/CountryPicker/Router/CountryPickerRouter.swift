@@ -20,4 +20,14 @@ class CountryPickerRouter: CountryPickerRouterProtocol {
         router.viewController = view
         return view
     }
+
+    func navigateToCategoryPickerScene(selectedCountry _: CountriesISO3166) {
+        let categoryScene = CategoryPickerRouter.createAnModule()
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else {
+                return
+            }
+            self.viewController?.navigationController?.pushViewController(categoryScene, animated: true)
+        }
+    }
 }

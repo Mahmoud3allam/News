@@ -9,18 +9,30 @@
 import Foundation
 protocol CountryPickerViewProtocol: AnyObject {
     var presenter: CountryPickerPresenterProtocol! { get set }
+
+    func enableDoneButton()
 }
 
 protocol CountryPickerPresenterProtocol {
     var view: CountryPickerViewProtocol? { get set }
 
     func viewDidLoad()
+    func numberOfItems() -> Int
+    func configure(countryCell: CountryCellView, for indexPath: IndexPath)
+    func didSelectItem(at indexPath: IndexPath)
+    func didTappedDoneButton()
 }
 
-protocol CountryPickerRouterProtocol {}
+protocol CountryPickerRouterProtocol {
+    func navigateToCategoryPickerScene(selectedCountry: CountriesISO3166)
+}
 
 protocol CountryPickerInteractorInPutProtocol {
     var presenter: CountryPickerInteractorOutPutProtocol? { get set }
 }
 
 protocol CountryPickerInteractorOutPutProtocol: AnyObject {}
+
+protocol CountryCellView {
+    func setData(countryData: String)
+}

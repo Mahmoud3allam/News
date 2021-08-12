@@ -9,12 +9,21 @@
 import Foundation
 protocol CategoryPickerViewProtocol: AnyObject {
     var presenter: CategoryPickerPresenterProtocol! { get set }
+
+    func enableDoneButton()
+    func disableDoneButton()
 }
 
 protocol CategoryPickerPresenterProtocol {
     var view: CategoryPickerViewProtocol? { get set }
 
     func viewDidLoad()
+    func numberOfItems() -> Int
+    func configure(categoryCell: CategoriesCellView, for indexPath: IndexPath)
+    func didSelectRow(at indexPath: IndexPath)
+    func didDeSelectRow(at indexPath: IndexPath)
+    func willSelectRow(currentIndexPath: IndexPath) -> IndexPath?
+    func doneButtonTapped()
 }
 
 protocol CategoryPickerRouterProtocol {}
@@ -24,3 +33,7 @@ protocol CategoryPickerInteractorInPutProtocol {
 }
 
 protocol CategoryPickerInteractorOutPutProtocol: AnyObject {}
+
+protocol CategoriesCellView {
+    func setData(category: String)
+}
