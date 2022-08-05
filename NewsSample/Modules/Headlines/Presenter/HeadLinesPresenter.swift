@@ -12,6 +12,7 @@ class HeadLinesPresenter: HeadLinesPresenterProtocol, HeadLinesInteractorOutPutP
     weak var view: HeadLinesViewProtocol?
     private let interactor: HeadLinesInteractorInPutProtocol
     private let router: HeadLinesRouterProtocol
+    
     var newsPage: Int = 0
     var totalArticlesCount: Int = 0
     var isLoadedArticlesFirstTime: Bool = false
