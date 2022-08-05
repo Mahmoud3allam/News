@@ -16,17 +16,17 @@ class RoutingManager {
 
     func getRoot() -> UIViewController {
         if isFavouriteCountrySelected(), isFavouriteCategoriesSelected() {
-            return UIViewController()
+            return NewsTabBar()
         } else if isFavouriteCountrySelected(), !isFavouriteCategoriesSelected() {
             if let _: String = self.userDefaultsManager.value(key: UserDefaultsKeys.favouriteCountry) {
-                return CategoryPickerRouter.createAnModule()
+                return BaseNavigationController(rootViewController: CategoryPickerRouter.createAnModule())
             } else {
-                return CountryPickerRouter.createAnModule()
+                return BaseNavigationController(rootViewController: CountryPickerRouter.createAnModule())
             }
         } else if isFavouriteCategoriesSelected(), !isFavouriteCountrySelected() {
-            return CountryPickerRouter.createAnModule()
+            return BaseNavigationController(rootViewController: CountryPickerRouter.createAnModule())
         }
-        return CountryPickerRouter.createAnModule()
+        return BaseNavigationController(rootViewController: CountryPickerRouter.createAnModule())
     }
 
     private func isFavouriteCountrySelected() -> Bool {

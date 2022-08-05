@@ -7,7 +7,6 @@
 //
 
 import Foundation
-
 enum CountriesISO3166: String, CaseIterable {
     case af = "AF"
     case ax = "AX"

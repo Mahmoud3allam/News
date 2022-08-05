@@ -13,6 +13,6 @@ enum HeadLinesCategories: String, CaseIterable {
     case general
     case health
     case sciences
-    case ports
+    case sports
     case technology
 }

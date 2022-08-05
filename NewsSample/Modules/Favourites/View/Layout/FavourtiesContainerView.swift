@@ -13,7 +13,7 @@ class FavourtiesContainerView: UIView {
     init(presenter: FavourtiesPresenterProtocol) {
         self.presenter = presenter
         super.init(frame: .zero)
-        self.backgroundColor = .white
+        self.backgroundColor = ColorTypes.background.value
         self.layoutUserInterFace()
     }
 

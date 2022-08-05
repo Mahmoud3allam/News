@@ -49,7 +49,7 @@ class CountryPickerPresenter: CountryPickerPresenterProtocol, CountryPickerInter
                 return
             }
             let selectedCountry = CountriesISO3166.allCases[selectedIndex.item]
-            userDefaultsManager.write(key: UserDefaultsKeys.favouriteCountry, value: selectedCountry.country)
+            userDefaultsManager.write(key: UserDefaultsKeys.favouriteCountry, value: selectedCountry.isoCode)
 
             self.router.navigateToCategoryPickerScene(selectedCountry: selectedCountry)
         }

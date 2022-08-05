@@ -20,4 +20,8 @@ class CategoryPickerRouter: CategoryPickerRouterProtocol {
         router.viewController = view
         return view
     }
+
+    func setRoot() {
+        self.viewController?.view.window?.rootViewController = RoutingManager.shared.getRoot()
+    }
 }

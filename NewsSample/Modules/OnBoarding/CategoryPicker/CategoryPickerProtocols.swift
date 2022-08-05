@@ -26,7 +26,9 @@ protocol CategoryPickerPresenterProtocol {
     func doneButtonTapped()
 }
 
-protocol CategoryPickerRouterProtocol {}
+protocol CategoryPickerRouterProtocol {
+    func setRoot()
+}
 
 protocol CategoryPickerInteractorInPutProtocol {
     var presenter: CategoryPickerInteractorOutPutProtocol? { get set }

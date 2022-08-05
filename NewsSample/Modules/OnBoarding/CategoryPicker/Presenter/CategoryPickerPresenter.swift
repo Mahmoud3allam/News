@@ -56,6 +56,7 @@ class CategoryPickerPresenter: CategoryPickerPresenterProtocol, CategoryPickerIn
             return
         }
         userDefaultsManager.write(key: UserDefaultsKeys.favouriteCategories, value: self.selectedCategories)
+        self.router.setRoot()
     }
 
     private func validateCategories() -> Bool {
