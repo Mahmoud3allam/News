@@ -10,23 +10,37 @@
 import XCTest
 
 class NewsSampleTests: XCTestCase {
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    var sut: CountryPickerPresenter?
+    var mockView: CountryPickerViewController?
+    var mockInteractor: CountryPickerInteractor?
+    var mockRouter: CountryPickerRouter?
+    /* We need to do a lot of setup here to make sure all
+     out dependcies are loaded before the tests are run.*/
+    // swiftlint:disable force_cast
+    // swiftlint:disable force_unwrapping
+
+    override func setUp() {
+        mockView = CountryPickerViewController()
+        mockInteractor = CountryPickerInteractor()
+        mockRouter = CountryPickerRouter()
+        sut = CountryPickerPresenter(view: mockView!,
+                                     interactor: mockInteractor!,
+                                     router: mockRouter!)
+        mockView!.presenter = sut
+        mockInteractor!.presenter = sut
+        mockRouter!.viewController = mockView
+        super.setUp()
     }
 
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    override func tearDown() {
+        sut = nil
+        mockView = nil
+        mockInteractor = nil
+        mockRouter = nil
+        super.tearDown()
     }
 
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
+    func test_fake_function() {
+        XCTAssertTrue(sut?.numberOfItems() == CountriesISO3166.allCases.count)
     }
 }
